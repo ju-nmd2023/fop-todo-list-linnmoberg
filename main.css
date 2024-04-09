@@ -58,8 +58,14 @@ cursor: pointer;
 }*/
 
 .unchecked {
-   text-decoration: line-through;
+   /* text-decoration: line-through; */
    width: 30px;
 margin-top: 10px;
+}
+
+.checked {
+    /* text-decoration: line-through; */
+    width: 30px;
+ margin-top: 10px;
 }
 
