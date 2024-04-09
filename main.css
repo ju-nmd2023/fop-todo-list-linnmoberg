@@ -57,15 +57,22 @@ cursor: pointer;
     left: 8px;
 }*/
 
-.unchecked {
+/* .unchecked { */
    /* text-decoration: line-through; */
-   width: 30px;
+   /* width: 30px;
 margin-top: 10px;
-}
+} */
 
-.checked {
+/* .checked { */
     /* text-decoration: line-through; */
-    width: 30px;
+    /* width: 30px;
  margin-top: 10px;
+} */
+
+.imagechecked {
+ 
 }
 
+.imageremove {
+    
+}

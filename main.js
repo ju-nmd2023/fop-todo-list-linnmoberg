@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 
 function addTask() {
     let inputFieldText = inputElement.value;
-    let task = {taskName: inputFieldText};
+    let task = { taskName: inputFieldText, done: "img/check-mark.png", remove: "img/x-mark.png"};
     tasks.push(task);
     showTasks();
     inputElement.value=""
@@ -27,7 +27,15 @@ function showTasks() {
 
       addUlItem.appendChild(liTaskElement);
 
-      tasks.addEventListener = 
+      const imgElement = document.createElement("img");
+      imgElement.classList.add(".imagechecked");
+      imgElement.src = tasks[i].done;
+      addUlItem.appendChild(imgElement);
+      
+      const imgElement2 = document.createElement("img");
+      imgElement2.classList.add(".imageremove");
+      imgElement2.src = tasks[i].remove;
+      addUlItem.appendChild(imgElement2);
     }
 }
 
