@@ -1,19 +1,12 @@
 //loading content from the html
 
-// () => {
-//     if (localStorage.getItem("tasks")) {
-//         tasks = JSON.parse(localStorage.getItem("tasks"));
-//         showTasks();
-//     }
-// })
-
-// function saveData() {
-//     localStorage.setItem("tasks", listcontainer.innerHTML);
-// }
-
-function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+window.addEventListener("load", () => {
+    if (localStorage.getItem("tasks")) {
+      tasks = JSON.parse(localStorage.getItem("tasks"));
+      showTasks();
+    }
+  });
+  
 
 let tasks = [];
 const inputElement = document.querySelector(".box");
@@ -24,16 +17,17 @@ window.addEventListener("load", () => {
   addButtonElement.addEventListener("click", addTask);
 });
 
-// The next lines I got help from one of the help assistents on the labs
 function addTask() {
   let inputFieldText = inputElement.value;
   let task = {
     taskName: inputFieldText,
     done: "img/check-mark.png",
+    stateIsDone: false,
     remove: "img/x-mark.png",
   };
   tasks.push(task);
   showTasks();
+  saveTasks(); 
   inputElement.value = "";
 }
 
@@ -45,18 +39,24 @@ function showTasks() {
     liTaskElement.innerText = tasks[i].taskName;
 
     addUlItem.appendChild(liTaskElement);
-
+//The imgElements I got help from one of the lab assistens 
     const imgElementDone = document.createElement("img");
     imgElementDone.classList.add(".imagechecked");
     imgElementDone.src = tasks[i].done;
     imgElementDone.width = 40;
     addUlItem.appendChild(imgElementDone);
 
+    if( tasks[i].stateIsDone === true) {
+        liTaskElement.style.textDecoration = "line-through";
+         }
     imgElementDone.addEventListener("click", function () {
+       tasks[i].stateIsDone = true; 
+       if( tasks[i].stateIsDone === true) {
       liTaskElement.style.textDecoration = "line-through";
+      saveTasks(); 
+       }
     });
 
-    // The next 3 lines I got help from one of the lab assistens 
     const imgElementRemove = document.createElement("img");
     imgElementRemove.classList.add(".imageremove");
     imgElementRemove.src = tasks[i].remove;
@@ -74,9 +74,12 @@ function showTasks() {
   }
 }
 
-window.addEventListener("load", showTasks);
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
-localStorage.color = tasks;
+
+
 
 
 
